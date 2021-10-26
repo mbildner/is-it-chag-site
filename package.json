@@ -2,12 +2,15 @@
   "name": "nextjs",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "predeploy": "esbuild index.js --bundle > app.js",
+    "deploy": "npm run predeploy"
+  },
   "dependencies": {
     "@hebcal/rest-api": "^3.8.4",
+    "esbuild": "^0.13.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "zipcode-to-timezone": "^0.0.9"
-  },
-  "devDependencies": {}
+  }
 }
