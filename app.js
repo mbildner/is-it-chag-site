@@ -79266,7 +79266,6 @@
     const events = eventsToClassicApi(HebrewCalendar.calendar(options), options);
     const todayEvents = events.items.filter((event) => {
       const eventDateString = event.date.split("T")[0];
-      console.log(`comparing event date: ${eventDateString} to query date: ${todayString}`);
       return todayString === eventDateString;
     });
     if (todayEvents.length > 1) {

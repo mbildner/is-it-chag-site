@@ -31,9 +31,6 @@ const handleIsChagQuery = (timestamp, zip) => {
 
   const todayEvents = events.items.filter((event) => {
     const eventDateString = event.date.split("T")[0];
-    console.log(
-      `comparing event date: ${eventDateString} to query date: ${todayString}`
-    );
     return todayString === eventDateString;
   });
 
