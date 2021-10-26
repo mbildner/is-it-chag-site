@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "predeploy": "esbuild index.js --bundle > app.js",
-    "deploy": "npm run predeploy"
+    "build": "esbuild index.js --bundle > app.js",
+    "predeploy": "npm run build",
+    "deploy": "npm run build"
   },
   "dependencies": {
     "@hebcal/rest-api": "^3.8.4",

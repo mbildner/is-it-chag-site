@@ -79255,7 +79255,7 @@
     const [year, month, day] = todayString.split("-").map((n) => parseInt(n, 10));
     const zipLocation = Location.lookup(zip);
     if (!zipLocation) {
-      throw new Error(`could not find location for zip: ${zip}`);
+      return `could not find location for zip: ${zip}`;
     }
     const options = {
       year,
@@ -79302,7 +79302,8 @@
     document.getElementById("zipChooseButton").addEventListener("click", () => {
       const maybeZip = document.getElementById("zipInput").value.trim();
       const result = handleIsChagQuery(new Date().toISOString(), maybeZip);
-      console.log(result);
+      console.log(`should be setting result to: ${result}`);
+      document.getElementById("readout").textContent = result;
     });
   });
 })();
