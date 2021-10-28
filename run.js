@@ -40,7 +40,7 @@ const handleIsChagQuery = (timestamp, zip) => {
 
   const todayEvent = todayEvents[0];
   if (!todayEvent) {
-    return `No. Today (${todayString}) is not Chag in ${zip}`;
+    return `No. ${todayString} is not Chag for ${zip}`;
   }
 
   const eventDate = new Date(todayEvent.date);
@@ -55,17 +55,17 @@ const handleIsChagQuery = (timestamp, zip) => {
   };
 
   if (todayEvent.yomtov) {
-    return `Yes! Today (${todayString}) is ${todayEvent.title} (${todayEvent.subcat} ${todayEvent.category}) in ${zip}`;
+    return `Yes! Today (${todayString}) is ${todayEvent.title} (${todayEvent.subcat} ${todayEvent.category}) for ${zip}`;
   } else if (todayEvent.category === "candles" && now >= eventDate) {
-    return `Yes! Candle lighting was at ${todayEvent.date} in ${zip}`;
+    return `Yes! Candle lighting was at ${todayEvent.date} for ${zip}`;
   } else if (todayEvent.category === "candles" && now < eventDate) {
-    return `No! Candle lighting will be at ${todayEvent.date} in ${zip}`;
+    return `No! Candle lighting will be at ${todayEvent.date} for ${zip}`;
   } else if (todayEvent.category === "havdalah" && now <= eventDate) {
-    return `Yes! Havdalah will be at ${todayEvent.date} in ${zip}`;
+    return `Yes! Havdalah will be at ${todayEvent.date} for ${zip}`;
   } else if (todayEvent.category === "havdalah" && now > eventDate) {
-    return `No! Havdalah was at ${todayEvent.date} in ${zip}`;
+    return `No! Havdalah was at ${todayEvent.date} for ${zip}`;
   } else {
-    return `No. Today (${todayString}) is not Chag in ${zip}`;
+    return `No. Today (${todayString}) is not Chag for ${zip}`;
   }
 };
 

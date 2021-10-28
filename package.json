@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hebcal/rest-api": "^3.8.4",
+    "bootstrap": "^5.1.3",
+    "date-fns": "^2.25.0",
     "esbuild": "^0.13.9",
     "prettier": "^2.4.1",
     "react": "17.0.2",

@@ -79273,7 +79273,7 @@
     }
     const todayEvent = todayEvents[0];
     if (!todayEvent) {
-      return `No. Today (${todayString}) is not Chag in ${zip}`;
+      return `No. ${todayString} is not Chag for ${zip}`;
     }
     const eventDate = new Date(todayEvent.date);
     const chagState = {
@@ -79284,17 +79284,17 @@
       isAtOrAfterEvent: now >= eventDate
     };
     if (todayEvent.yomtov) {
-      return `Yes! Today (${todayString}) is ${todayEvent.title} (${todayEvent.subcat} ${todayEvent.category}) in ${zip}`;
+      return `Yes! Today (${todayString}) is ${todayEvent.title} (${todayEvent.subcat} ${todayEvent.category}) for ${zip}`;
     } else if (todayEvent.category === "candles" && now >= eventDate) {
-      return `Yes! Candle lighting was at ${todayEvent.date} in ${zip}`;
+      return `Yes! Candle lighting was at ${todayEvent.date} for ${zip}`;
     } else if (todayEvent.category === "candles" && now < eventDate) {
-      return `No! Candle lighting will be at ${todayEvent.date} in ${zip}`;
+      return `No! Candle lighting will be at ${todayEvent.date} for ${zip}`;
     } else if (todayEvent.category === "havdalah" && now <= eventDate) {
-      return `Yes! Havdalah will be at ${todayEvent.date} in ${zip}`;
+      return `Yes! Havdalah will be at ${todayEvent.date} for ${zip}`;
     } else if (todayEvent.category === "havdalah" && now > eventDate) {
-      return `No! Havdalah was at ${todayEvent.date} in ${zip}`;
+      return `No! Havdalah was at ${todayEvent.date} for ${zip}`;
     } else {
-      return `No. Today (${todayString}) is not Chag in ${zip}`;
+      return `No. Today (${todayString}) is not Chag for ${zip}`;
     }
   };
   var addZips = () => {
@@ -79317,8 +79317,17 @@
   // index.js
   var submitQuery = () => {
     const maybeZip = document.getElementById("zipInput").value.trim();
-    const result = handleIsChagQuery(document.getElementById("dateTimeLocalInput").value, maybeZip);
+    const maybeTimestamp = document.getElementById("dateTimeLocalInput").value;
+    const result = handleIsChagQuery(maybeTimestamp, maybeZip);
     document.getElementById("readout").textContent = result;
+    let niceTime = maybeTimestamp;
+    try {
+      const d = new Date(niceTime);
+      niceTime = `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+    } catch (e) {
+      console.error(`failed to parse datestamp ${maybeTimestamp}`);
+    }
+    document.getElementById("currentDateInputFormatted").textContent = niceTime;
   };
   window.document.addEventListener("DOMContentLoaded", () => {
     addZips();
@@ -79326,7 +79335,6 @@
     document.getElementById("dateTimeLocalInput").addEventListener("input", submitQuery);
     document.getElementById("zipInput").value = "07666";
     document.getElementById("zipInput").addEventListener("input", submitQuery);
-    document.getElementById("zipChooseButton").addEventListener("click", submitQuery);
     window.setTimeout(() => {
       submitQuery();
     }, 0);
