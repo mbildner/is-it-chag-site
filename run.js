@@ -3,6 +3,15 @@ import { eventsToClassicApi } from "@hebcal/rest-api";
 import zipcode_to_timezone from "zipcode-to-timezone";
 import zipToCoordinatesMap from "./zip_to_coordinates.json";
 
+
+/**
+ * 
+ * Do an audit of dates, make them all consistent and then fix up the output
+ * 
+ * 
+ */
+
+
 const ZIP_REGEX = /\d{5}/;
 
 const handleIsChagQuery = (timestamp, zip) => {
